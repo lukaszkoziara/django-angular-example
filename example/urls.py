@@ -6,10 +6,10 @@ from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 admin.autodiscover()
 
+import views
+
 from example.books.api import AuthorResource, PublisherResource, BookResource
-
 from tastypie.api import Api
-
 from django.conf import settings
 
 v1_api = Api(api_name='v1')
@@ -33,5 +33,6 @@ urlpatterns = patterns('',
     
     url(r'^api/', include(v1_api.urls)),
     
+    url(r'^static/partials/(?P<template_name>.*)$', views.load_partial),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT})
 )
