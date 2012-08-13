@@ -1,0 +1,27 @@
+{% load static %}
+{% load verbatim_converter %}
+
+<!DOCTYPE  html>
+<html ng-app="myapp">
+	<head>
+		<title>Angular list</title>
+		
+		<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+		<script src="http://code.angularjs.org/angular-resource-1.0.1.min.js"></script>
+		<script src="{% static "js/app.js" %}"></script>
+	</head>
+	
+	<body>
+		<div ng-controller="MyController">
+			{% verbatim %}
+			<ul>
+				<li ng-repeat="author in authorResult.objects">
+					{{author.first_name}} {{author.last_name}}
+				</li>
+			</ul>
+			
+			<button ng-click="addNewAuthor()">Add new author</button>
+			{% endverbatim %}
+		</div>
+	</body>
+</html>
