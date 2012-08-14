@@ -24,7 +24,7 @@ angular.module('myapp', ['ngResource']);
  */
 
 function MyController($scope, $resource){
-	$scope.authors = $resource('/api/v1/author/',
+	$scope.authors = $resource('/api/v1/quickstats/',
 		{
 			callback: 'JSON_CALLBACK'},
 		{get:{method:'JSONP'}}

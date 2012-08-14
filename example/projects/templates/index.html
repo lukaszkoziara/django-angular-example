@@ -1,0 +1,19 @@
+{% load static %}
+{% load verbatim_converter %}
+
+<!DOCTYPE html>
+<html ng-app="testapp">
+  <head>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="http://code.angularjs.org/angular-resource-1.0.1.min.js"></script>
+    <script src="{% static "js/quizapp/app.js" %}"></script>
+  </head>
+  <body>
+    <h2>Quiz</h2>
+    <div ng-controller="TestController">
+    	<button type="button" ng-click="doAdd()">Add</button>
+    </div>
+  
+  </body>
+  
+</html>

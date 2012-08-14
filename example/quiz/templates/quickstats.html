@@ -1,0 +1,34 @@
+{% load static %}
+{% load verbatim_converter %}
+
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head>
+		<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+		<script src="http://code.angularjs.org/angular-resource-1.0.1.min.js"></script>
+		<script src="{% static "js/quiz/app.js" %}"></script>
+	</head>
+	
+	<body>
+		<div ng-controller="QuickStatsController">
+			<form>{% csrf_token %}
+				
+				<label>age</label>
+				<input type="text" name="age" id="id_age"
+					ng-model="quickstat.age"/>
+				
+				<label>height:</label>
+				<input type="text" name="height_inches" id="id_height_inches"
+					ng-model="quickstat.height_inches"/>
+				
+				<button type="submit" ng-click="createItem()">Create quick stat</button>
+			</form>
+			
+			<br/>
+			<br/>
+			<br/>
+			
+			<button type="button" ng-click="addItem()">Add new item</button>
+		</div>
+	</body>
+</html>

@@ -1,4 +1,4 @@
-angular.module('project', ['mongolab']).
+angular.module('project', ['projectapi']).
   config(function($routeProvider) {
     $routeProvider.
       when('/', {controller:ListCtrl, templateUrl:'/static/partials/list.html'}).
@@ -10,15 +10,37 @@ angular.module('project', ['mongolab']).
  
 function ListCtrl($scope, Project) {
   $scope.projects = Project.query();
+  
+  $scope.doAdd = function(){
+  	console.log('adding...');
+  	
+  }
 }
  
  
 function CreateCtrl($scope, $location, Project) {
+	//$scope.project_resource = $resource('/api/v1/project/');
+	//$scope.Project = Project;
+	
+	$scope.doAdd = function(){
+		console.log('adding');
+		var newProj = new Project({name: 'test2', website: 'http://test.com', description: 'testng'});
+		newProj.$save();
+	}
+	
+	$scope.change = function(){
+		console.log('changing');
+		
+	}
+	
   $scope.save = function() {
+  	console.log('saving in create controller');
+  	
+  	
     Project.save($scope.project, function(project) {
     	$location.path('/');
-      //$location.path('/edit/' + project._id.$oid);
     });
+    
   }
 }
  
