@@ -10,7 +10,7 @@ import views
 
 from example.books.api import AuthorResource, PublisherResource, BookResource
 from example.projects.api import ProjectResource
-from example.quiz.api import LocationResource, QuickStatsResource
+from example.quiz.api import LocationResource, QuickStatsResource, UserAttributeResource
 from tastypie.api import Api
 from django.conf import settings
 
@@ -21,6 +21,7 @@ v1_api.register(BookResource())
 v1_api.register(ProjectResource())
 v1_api.register(LocationResource())
 v1_api.register(QuickStatsResource())
+v1_api.register(UserAttributeResource())
 
 
 urlpatterns = patterns('',

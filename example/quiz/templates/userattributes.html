@@ -1,0 +1,52 @@
+{% load static %}
+{% load verbatim_converter %}
+
+<!DOCTYPE html>
+<html ng-app="ua">
+	<head>
+		<script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+		<script src="http://code.angularjs.org/angular-resource-1.0.1.min.js"></script>
+		<script src="{% static "js/quiz/uafactory.js" %}"></script>
+		<script src="{% static "js/quiz/ua.js" %}"></script>
+	</head>
+	
+	<body>
+		<div ng-controller="UserAttributesController">
+			{% verbatim %}
+			
+			<table>
+				<tr ng-repeat="item in result.objects">
+					<td>
+						<span ng-show="!item.editing">
+						{{item.name}}
+						</span>
+						
+						<input type="text" value="{{item.name}}" ng-model="item.name"
+							ng-show="item.editing">
+						
+						<button ng-show="item.editing" ng-click="saveAttributeEdits(item)">Save</button>
+						
+					</td>
+					<td><a href="#" ng-click="editAttribute(item)">edit</a></td>
+					<td><a href="#" ng-click="removeAttribute(item)">remove</a></td>
+				</tr>
+			</table>
+			
+			<form>
+				<input type="text" name="attribute_name" ng-model="attribute_name"/>
+				<button type="submit" ng-click="addAttribute()">Add attribute</button>
+				<span ng-show="numsaving > 0">Saving {{numsaving}} items</span>
+			</form>
+			
+			{% endverbatim %}
+			
+			<hr/>
+			<br/>
+			
+			<form method="post" action=".">{% csrf_token %}
+				<input type="text" name="myname"/>
+				<button type="submit">Submit form</button>
+			</form>
+		</div>
+	</body>
+</html>
