@@ -1,20 +1,19 @@
 angular.module('ua', ['ngResource']);
 
 function UserAttributesController($scope, $resource){
-	/*
-	 * var User = $resource('/user/:userId', {userId:'@id'});
-		var user = User.get({userId:123}, function() {
-		  user.abc = true;
-		  user.$save();
-		});
-	 */
-	
 	$scope.ua = $resource('/api/v1/userattributes/?format=json');
-	$scope.uaid = $resource('/api/v1/userattributes/:id/?format=json', {id: '@id'},
+	$scope.ua_id = $resource('/api/v1/userattributes/:id/?format=json', {id: '@id'},
 		{update: { method: 'PUT' }});
 	
-	
 	$scope.numsaving = 0;
+	$scope.getNumSavingText = function(){
+		if($scope.numsaving == 1){
+			return "Saving 1 item...";
+		}
+		else{
+			return "Saving " + $scope.numsaving + " items...";
+		}
+	}
 	
 	$scope.result = $scope.ua.get(function(response){
 		console.log('got result');
@@ -33,7 +32,7 @@ function UserAttributesController($scope, $resource){
 	
 	$scope.removeAttribute = function(item){
 		console.log('removing item: ', item);
-		$scope.uaid.remove(item);
+		$scope.ua_id.remove(item);
 		
 		var position = $scope.result.objects.indexOf(item);
 		if(position !== -1){
@@ -42,7 +41,7 @@ function UserAttributesController($scope, $resource){
 	}
 	
 	$scope.updateAttribute = function(item){
-		$scope.uaid.save(item);
+		$scope.ua_id.save(item);
 	}
 	
 	$scope.editAttribute = function(item){
@@ -51,6 +50,6 @@ function UserAttributesController($scope, $resource){
 	
 	$scope.saveAttributeEdits = function(item){
 		item.editing = false;
-		$scope.uaid.update(item);
+		$scope.ua_id.update(item);
 	}
 }

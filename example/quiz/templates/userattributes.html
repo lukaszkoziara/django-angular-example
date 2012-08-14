@@ -35,7 +35,7 @@
 			<form>
 				<input type="text" name="attribute_name" ng-model="attribute_name"/>
 				<button type="submit" ng-click="addAttribute()">Add attribute</button>
-				<span ng-show="numsaving > 0">Saving {{numsaving}} items</span>
+				<span ng-show="numsaving > 0">{{getNumSavingText()}}</span>
 			</form>
 			
 			{% endverbatim %}
